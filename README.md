@@ -1,3 +1,5 @@
+![combinations CI](https://github.com/itiviti-cpp-master/combinations/workflows/combinations%20CI/badge.svg)
+
 # Класcификация комбинаций
 
 ## Теоретическое введение

@@ -28,7 +28,7 @@ TEST(CombinationsResourceTest, empty_path)
 
 TEST(CombinationsResourceTest, resource_does_not_exist)
 {
-    const std::filesystem::path path{"unknown.xml"};
+    const std::filesystem::path path{"etc/unknown.xml"};
     std::error_code ec;
     ASSERT_FALSE(std::filesystem::exists(path, ec));
 
@@ -38,7 +38,7 @@ TEST(CombinationsResourceTest, resource_does_not_exist)
 
 TEST(CombinationsResourceTest, empty_resource)
 {
-    const std::filesystem::path path{"empty.xml"};
+    const std::filesystem::path path{"etc/empty.xml"};
     std::error_code ec;
     ASSERT_TRUE(std::filesystem::exists(path, ec));
 
@@ -67,7 +67,7 @@ public:
 protected:
     static void SetUpTestCase()
     {
-        const std::filesystem::path path{"combinations.xml"};
+        const std::filesystem::path path{"etc/combinations.xml"};
         std::error_code ec;
         ASSERT_TRUE(std::filesystem::exists(path, ec));
 
