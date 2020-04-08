@@ -1,12 +1,18 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.13)
+
+include(test/Strict.cmake)
 
 set(PROJECT_NAME combinations)
 project(${PROJECT_NAME})
 
 # Set up the compiler flags
-set(CMAKE_CXX_FLAGS "-g -Wall")
-link_libraries(stdc++fs)
+set(CMAKE_CXX_FLAGS "-g")
 set(CMAKE_CXX_STANDARD 17)
+link_libraries(stdc++fs)
+
+# XML parsing subproject
+add_subdirectory(xml)
+add_library(xml_lib ALIAS pugixml)
 
 # Inlcude directories
 set(COMMON_INCLUDES ${PROJECT_SOURCE_DIR}/include)
@@ -26,23 +32,14 @@ add_executable(combinations ${PROJECT_SOURCE_DIR}/src/main.cpp)
 
 # linking Main against the library
 target_link_libraries(combinations combinations_lib)
+target_link_libraries(combinations xml_lib)
 
 # google test is a git submodule
-add_subdirectory(./googletest)
+add_subdirectory(googletest)
 
 enable_testing()
 
-# Include the gtest library
-include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
+# test is a git submodule
+add_subdirectory(test)
 
-# Test files
-file(GLOB TEST_SRC_FILES ${PROJECT_SOURCE_DIR}/test/*.cpp)
-
-# Unit tests
-add_executable(runUnitTests ${TEST_SRC_FILES})
-
-# Standard linking to gtest stuff
-target_link_libraries(runUnitTests gtest gtest_main)
-
-# Extra linking for the project
-target_link_libraries(runUnitTests combinations_lib)
+add_test(NAME tests COMMAND runUnitTests)
