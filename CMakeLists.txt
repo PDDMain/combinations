@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.13)
 
+include(test/Filesystem.cmake)
 include(test/Strict.cmake)
 
 set(PROJECT_NAME combinations)
@@ -8,11 +9,9 @@ project(${PROJECT_NAME})
 # Set up the compiler flags
 set(CMAKE_CXX_FLAGS "-g")
 set(CMAKE_CXX_STANDARD 17)
-link_libraries(stdc++fs)
 
 # XML parsing subproject
 add_subdirectory(xml)
-add_library(xml_lib ALIAS pugixml)
 
 # Inlcude directories
 set(COMMON_INCLUDES ${PROJECT_SOURCE_DIR}/include)
@@ -26,6 +25,8 @@ list(REMOVE_ITEM SRC_FILES ${PROJECT_SOURCE_DIR}/src/main.cpp)
 
 # Compile source files into a library
 add_library(combinations_lib ${SRC_FILES})
+target_link_libraries(combinations_lib xml_lib)
+target_link_libraries(combinations_lib PUBLIC ${CXX_FILESYSTEM_LIBRARIES})
 
 # Main is separate
 add_executable(combinations ${PROJECT_SOURCE_DIR}/src/main.cpp)
