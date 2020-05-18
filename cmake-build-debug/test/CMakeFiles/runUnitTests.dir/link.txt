@@ -1,0 +1,1 @@
+/usr/bin/c++.exe -g -g  -Wl,--enable-auto-import CMakeFiles/runUnitTests.dir/src/test.cpp.o  -o runUnitTests.exe -Wl,--out-implib,librunUnitTests.dll.a -Wl,--major-image-version,0,--minor-image-version,0 ../lib/libgtestd.a ../lib/libgtest_maind.a ../xml/libpugixml.a ../libcombinations_lib.a ../lib/libgtestd.a ../xml/libpugixml.a 

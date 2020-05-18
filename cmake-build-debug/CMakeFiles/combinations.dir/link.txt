@@ -1,0 +1,1 @@
+/usr/bin/c++.exe -g -g  -Wl,--enable-auto-import CMakeFiles/combinations.dir/src/main.cpp.o  -o combinations.exe -Wl,--out-implib,libcombinations.dll.a -Wl,--major-image-version,0,--minor-image-version,0 libcombinations_lib.a xml/libpugixml.a 
