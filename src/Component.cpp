@@ -1,7 +1,6 @@
 #include "Component.h"
 
 #include <iomanip>
-#include <sstream>
 
 Component Component::from_stream(std::istream & strm)
 {
